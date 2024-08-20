@@ -1,5 +1,5 @@
 # Use an official NVIDIA CUDA runtime as base image
-FROM nvidia/cuda:11.0-base
+FROM nvidia/cuda:11.0.3-base-ubuntu20.04
 # Set the working directory in the container to /app
 WORKDIR /app
 # Copy the current directory contents into the container at /app
