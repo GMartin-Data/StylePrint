@@ -10,21 +10,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build Docker image
-        # Ensure that the image is tagged correctly during build
-        run: docker build -t stylesprint:latest .
+        # Build the image and tag it as stylesprint (latest tag is implicit)
+        run: docker build -t stylesprint .
       - name: Run tests in verbose mode
-        run: docker run stylesprint:latest pytest -v
+        # Run the tests using the built image
+        run: docker run stylesprint pytest -v
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Verify Docker image exists
-        run: docker images -q stylesprint:latest
       - name: Login to DockerHub
+        # Log in to DockerHub using secrets
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Tag and Push Docker image
-        run: |
-          docker tag stylesprint:latest ${{ secrets.DOCKER_USERNAME }}/stylesprint:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/stylesprint:latest
+      - name: Push Docker image
+        # Push the image to DockerHub (default tag is latest)
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/stylesprint
