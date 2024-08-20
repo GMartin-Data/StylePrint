@@ -1,0 +1,28 @@
+# Ignore virtual environments
+.venv
+venv/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore system-related files
+*.swp
+*.swo
+core
+*.log
+*.lock
+/tmp/*
+/var/tmp/*
+.Trash-*
+.cache/
+.config/
+.local/
+.ssh/
+
+# Ignore editor-specific files
+*.swp
+*.swo
+.idea/
+.vscode/
