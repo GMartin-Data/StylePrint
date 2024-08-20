@@ -1,4 +1,5 @@
 fastapi<2
+pytest<9
 torch<2
 transformers<5
 uvicorn<2
